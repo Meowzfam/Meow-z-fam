@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="Zfam.png" type="image/png" sizes="any">
+<link rel="shortcut icon" href="Zfam.png" type="image/png">
+<link rel="apple-touch-icon" href="Zfam.png">
+
+<meta name="theme-color" content="#000000">
+<meta name="msapplication-TileColor" content="#000000">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zahra</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+    --primary-font: 'Poppins', sans-serif;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    --accent-color: rgba(255, 255, 255, 0.15);
+    
+    /* Heading responsive size variable imported from main page */
+    --heading-size: clamp(1.3rem, 4vw, 2.5rem); 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--primary-font);
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    outline: none;
+}
+
+body {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    background: #000;
+}
+
+/* ============================ */
+/* PAGE BACKGROUND STRUCTURE    */
+/* ============================ */
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.0);
+    z-index: 1;
+}
+
+/* ============================ */
+/* HEADING STYLE FROM MAIN PAGE */
+/* ============================ */
+h1 {
+    font-size: var(--heading-size);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    border: 3px solid white;
+    border-radius: 15px;
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+    white-space: nowrap;
+    
+    /* Fixed placement to keep it safely separated from the 3D card layout viewport */
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+}
+
+/* ============================ */
+/* BACK BUTTON DESIGN           */
+/* ============================ */
+.fixed-back-btn {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    background: rgba(25, 25, 25, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 100;
+}
+
+.fixed-back-btn:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* ============================ */
+/* PERSPECTIVE CARD VIEWPORT    */
+/* ============================ */
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    perspective: 2500px;
+    position: relative;
+    z-index: 10;
+}
+
+/* BOLD NAME LABEL */
+.card-label-name {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2px; 
+    letter-spacing: 1.5px;
+    text-shadow: 0 4px 15px rgba(255, 255, 255, 0.25), 0 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 15;
+}
+
+/* SMALL CAPTION LABEL */
+.card-label-caption {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65); 
+    text-transform: uppercase;
+    letter-spacing: 3px; 
+    margin-bottom: 20px; 
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    z-index: 15;
+}
+
+.card {
+    /* Proportional scaling optimized exactly for 1080 x 1600 media */
+    width: min(90vw, 365px);
+    height: 540px; 
+    position: relative;
+    transform-style: preserve-3d;
+    cursor: grab;
+    
+    /* HOST CARD VARIABLES FROM MAIN PAGE */
+    --profile-y-offset: -13%; 
+    --pfp-size: 38%;           
+    --pfp-x: 0px;              
+    --pfp-y: -10px;            
+    --frame-size: 100%;        
+    --frame-x: 0px;            
+    --frame-y: -10px;          
+    --name-x: 65px;            
+    --name-y: -1px;            
+    --name-size: 1.1rem;       
+    --name-color: white;       
+    --info-bar-width: 90%;     
+    --info-bar-height: 120px;  
+    --info-bar-x: 0px;         
+    --info-bar-y: 0px;         
+    --level-x: 0px;            
+    --level-y: 60px;           
+    --level-color: #ffffff;    
+    --level-icon-size: 110px;   
+    --level-icon-x: -30px;       
+    --level-icon-y: 10px;       
+    --level-txt-size: 1.1rem; 
+    --level-txt-x: -60px;        
+    --level-txt-y: 15px; 
+    --desc-x: -60px;             
+    --desc-y: -35px;             
+    --desc-size: 0.99rem;      
+    --desc-color: rgba(255, 255, 255, 0.9); 
+    --desc-width: 85%;  
+}
+
+.side {
+    position: absolute;
+    inset: 0;
+    border-radius: 35px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--glass-bg);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), inset 0 0 25px rgba(255,255,255,.04);
+    overflow: hidden;
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+/* ============================ */
+/* FRONT CARD SPECIFIC CSS      */
+/* ============================ */
+.card-video-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.profile-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(var(--profile-y-offset));
+    z-index: 2;
+}
+
+.pfp {
+    width: var(--pfp-size);
+    height: var(--pfp-size);
+    border-radius: 50%;
+    object-fit: cover;
+    transform: translate(var(--pfp-x), var(--pfp-y));
+}
+
+.frame {
+    position: absolute;
+    width: var(--frame-size);
+    transform: translate(var(--frame-x), var(--frame-y));
+    pointer-events: none;
+}
+
+.card-info-bar {
+    position: absolute;
+    bottom: 20px;
+    width: var(--info-bar-width);
+    height: var(--info-bar-height);
+    background-image: url('Mainnamebar.png'); 
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(var(--info-bar-x), var(--info-bar-y));
+    z-index: 3;
+}
+
+.name-text {
+    font-size: var(--name-size);
+    color: var(--name-color);
+    transform: translate(var(--name-x), var(--name-y));
+    font-weight: 600;
+}
+
+.level-box {
+    display: flex;
+    align-items: center;
+    transform: translate(var(--level-x), var(--level-y));
+}
+
+.level-icon {
+    width: var(--level-icon-size);
+    transform: translate(var(--level-icon-x), var(--level-icon-y));
+    position: absolute;
+}
+
+.level-text {
+    font-size: var(--level-txt-size);
+    color: var(--level-color);
+    transform: translate(var(--level-txt-x), var(--level-txt-y));
+    font-weight: bold;
+    z-index: 1;
+}
+
+.card-description {
+    position: absolute;
+    bottom: 120px;
+    width: var(--desc-width);
+    font-size: var(--desc-size);
+    color: var(--desc-color);
+    transform: translate(var(--desc-x), var(--desc-y));
+    text-align: center;
+    z-index: 3;
+}
+
+.sub-description {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    color: white;
+    text-align: right;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2;
+    background: rgba(0,0,0,0.3);
+    padding: 6px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(5px);
+    z-index: 5;
+}
+
+/* ============================ */
+/* INDEPENDENT CARD MEDIA       */
+/* ============================ */
+.back-img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    border-radius: 20px;
+    z-index: -2;
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: -1;
+}
+
+@media(max-width: 480px) {
+    .container {
+        padding-top: 85px; 
+    }
+    .card-label-name {
+        font-size: 1.7rem;
+    }
+    .card-label-caption {
+        font-size: 0.85rem;
+        letter-spacing: 2.5px;
+        margin-bottom: 15px;
+    }
+    .card { 
+        width: 76vw;
+        height: calc(76vw * 1600 / 1080); 
+    }
+    .fixed-back-btn { top: 20px; left: 20px; width: 45px; height: 45px; font-size: 1.1rem; }
+    h1 { top: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<video class="video-bg" autoplay muted loop playsinline>
+    <source src="Background.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+
+<h1>𝙼𝚎𝚘w'𝚣 𝙵𝚊𝚖</h1>
+
+<a href="Main.html" class="fixed-back-btn">
+    <i class="fas fa-arrow-left"></i>
+</a>
+
+<div class="container" id="main-card-container">
+    
+    <div class="card-label-name">Zahra</div>
+    <div class="card-label-caption">Host</div>
+
+    <div class="card" id="card">
+        
+        <!-- FRONT SIDE OF CARD UPDATED HERE -->
+        <div class="side front" id="front-side">
+            <video class="card-video-bg" autoplay muted loop playsinline>
+                <source src="Zahrabg.mp4" type="video/mp4">
+            </video>
+            <div class="profile-container">
+                <img src="Zahra.jpg" class="pfp" alt="Host PFP">
+                <img src="Mainframe.png" class="frame" alt="Frame">
+            </div>
+            <div class="card-info-bar">
+                <div class="name-text">Zahra</div>
+                <div class="level-box">
+                    <img src="Lvl.png" class="level-icon" alt="Level">
+                    <span class="level-text">Lvl.34</span>
+                </div>
+            </div>
+            <div class="card-description">Softly Elusive</div>
+            <div class="sub-description">Best Live<br>Streamer</div>
+            
+            <div class="card-overlay"></div>
+        </div>
+
+        <div class="side back" id="back-side">
+            <div id="back-media-container" style="position: absolute; inset:0; z-index:-2; display: flex; justify-content: center; align-items: center;">
+                <img class="back-img" src="Zfam.png" alt="Back Picture">
+            </div>
+            <div class="card-overlay"></div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+// --- 3D INTERACTIVE INERTIAL MATRICES CONTROLLER ENGINE ---
+const card = document.getElementById('card');
+let isCardDragging = false;
+let cardX = 0;
+let cardY = 0;
+let lastCardTouchX = 0;
+let lastCardTouchY = 0;
+
+function isEdgeOn() {
+    let yAngle = cardY % 180;
+    if (yAngle < 0) yAngle += 180;
+    let xAngle = cardX % 180;
+    if (xAngle < 0) xAngle += 180;
+    return (Math.abs(yAngle - 90) < 25 || Math.abs(xAngle - 90) < 25);
+}
+
+card.addEventListener('mousedown', () => { 
+    isCardDragging = true; 
+});
+document.addEventListener('mouseup', () => { isCardDragging = false; });
+
+document.addEventListener('mousemove', (e) => {
+    if (!isCardDragging) return;
+    cardY += e.movementX * 0.5;
+    cardX -= e.movementY * 0.5;
+    card.style.transform = `rotateX(${cardX}deg) rotateY(${cardY}deg)`;
+});
+
+card.addEventListener('touchstart', () => {
+    isCardDragging = true;
+    lastCardTouchX = event.touches[0].clientX;
+    lastCardTouchY = event.touches[0].clientY;
+});
+
+document.addEventListener('touchend', () => { isCardDragging = false; });
+
+document.addEventListener('touchmove', (e) => {
+    if (!isCardDragging) return;
+    const touch = e.touches[0];
+    let dx = touch.clientX - lastCardTouchX;
+    let dy = touch.clientY - lastCardTouchY;
+    cardY += dx * 0.4;
+    cardX -= dy * 0.4;
+    card.style.transform = `rotateX(${cardX}deg) rotateY(${cardY}deg)`;
+    lastCardTouchX = touch.clientX;
+    lastCardTouchY = touch.clientY;
+});
+
+document.addEventListener('mousedown', () => {
+    if (isEdgeOn()) isCardDragging = true;
+});
+
+document.addEventListener('touchstart', (e) => {
+    if (isEdgeOn()) {
+        isCardDragging = true;
+        lastCardTouchX = e.touches[0].clientX;
+        lastCardTouchY = e.touches[0].clientY;
+    }
+});
+</script>
+
+</body>
+</html>

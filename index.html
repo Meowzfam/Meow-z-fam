@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link class="favicon" rel="icon" href="Zfam.jpg" type="image/png" sizes="any">
+<link rel="shortcut icon" href="Zfam.jpg" type="image/png">
+<link rel="apple-touch-icon" href="Zfam.jpg">
+
+<!-- Theme Color -->
+<meta name="theme-color" content="#000000">
+<meta name="msapplication-TileColor" content="#000000">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meow'z Fam</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+    }
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        position: relative;
+        /* Removed flexbox so elements don't influence each other */
+    }
+
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+        background-color: black;
+    }
+
+    .background video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    h1 {
+        position: absolute;
+        /* Move the heading up/down here */
+        top: 3vh; 
+        left: 50%;
+        transform: translateX(-50%);
+        
+        font-size: clamp(2rem, 8vw, 4rem);
+        color: white;
+        text-align: center;
+        padding: 15px 30px;
+        display: inline-block;
+        border: 3px solid white;
+        border-radius: 15px;
+        box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ffffff;
+        white-space: nowrap;
+    }
+
+    button {
+        position: absolute;
+        /* Move the button up/down here */
+        bottom: 32vh;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        padding: 15px 45px;
+        font-size: clamp(1rem, 3vw, 1.25rem);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    button:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Soft Press Effect */
+    button:active {
+        transform: translateX(-50%) scale(0.95);
+        background: rgba(255, 255, 255, 0.4);
+    }
+</style>
+</head>
+<body>
+    <div class="background">
+        <video autoplay muted loop playsinline poster="Background.png">
+            <source src="Background.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    <h1>Meow'z Fam</h1>
+    
+    <button onclick="window.location.href='main.html'">
+        Continue
+    </button>
+</body>
+</html>

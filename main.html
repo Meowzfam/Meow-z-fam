@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link class="favicon" rel="icon" href="Zfam.jpg" type="image/png" sizes="any">
+<link rel="shortcut icon" href="Zfam.jpg" type="image/png">
+<link rel="apple-touch-icon" href="Zfam.jpg">
+
+<meta name="theme-color" content="#000000">
+<meta name="msapplication-TileColor" content="#000000">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meow'z Fam</title>
+
+<style>
+    /* =========================================
+       CARD ADJUSTMENT VARIABLES (GLOBAL DEFAULTS)
+       ========================================= */
+    :root {
+        /* General Layout */
+        --header-height: 10vh;       
+        --heading-size: clamp(1.3rem, 4vw, 2.5rem); 
+        --icon-size: 24px; 
+        --card-width: clamp(230px, 62vw, 310px); 
+
+        /* Fallback Default Settings */
+        --profile-y-offset: -13%;      
+        --level-color: #ffffff;        
+        --info-bar-bottom: 45px;       
+        --desc-bottom: 15px;
+    }
+
+    /* ==========================================================================
+       INDIVIDUAL CARD SEPARATE ADJUSTMENTS
+       Tweak these handles to perfectly align elements on a per-card basis!
+       ========================================================================== */
+    
+    /* HOST CARD (ZARA) */
+    #card-host {
+        --profile-y-offset: -13%; 
+
+        /* 1. PROFILE PICTURE CONTROLS */
+        --pfp-size: 38%;           /* Size of the PFP circle */
+        --pfp-x: 0px;              /* Move PFP Left (-) or Right (+) */
+        --pfp-y: -10px;            /* Move PFP Up (-) or Down (+) */
+
+        /* 2. FRAME CONTROLS */
+        --frame-size: 100%;        /* Size of the border/frame */
+        --frame-x: 0px;            /* Move Frame Left (-) or Right (+) */
+        --frame-y: -10px;          /* Move Frame Up (-) or Down (+) */
+        
+        /* 3. NAME TEXT CONTROLS */
+        --name-x: 65px;            /* Move Name Left (-) or Right (+) */
+        --name-y: -1px;            /* Move Name Up (-) or Down (+) */
+        --name-size: 1.1rem;       /* Text size of the name */
+        --name-color: white;       /* Color of the name */
+        
+        /* 4. NAME BAR / INFO BAR CONTAINER CONTROLS */
+        --info-bar-width: 90%;     /* Width of the bar inside the card */
+        --info-bar-height: 120px;  /* Height of the bar background */
+        --info-bar-x: 0px;         /* Shift entire bar Left (-) or Right (+) */
+        --info-bar-y: 0px;         /* Shift entire bar Up (-) or Down (+) */
+        
+        /* 5. LEVEL CONTAINER CONTROLS */
+        --level-x: 0px;            /* Move whole level group Left/Right */
+        --level-y: 60px;           /* Move whole level group Up/Down */
+        --level-color: #ffffff;    /* Level text color & glow */
+        
+        /* LEVEL ICON ONLY */
+        --level-icon-size: 110px;   
+        --level-icon-x: -30px;       
+        --level-icon-y: 10px;       
+        
+        /* LEVEL NUMBER TEXT ONLY */
+        --level-txt-size: 1.1rem; 
+        --level-txt-x: -60px;        
+        --level-txt-y: 15px; 
+        
+        /* 6. DESCRIPTION CONTROLS */
+        --desc-x: -60px;             /* Move Description Left (-) or Right (+) */
+        --desc-y: -35px;             /* Move Description Up (-) or Down (+) */
+        --desc-size: 0.99rem;      /* Text size of the description */
+        --desc-color: rgba(255, 255, 255, 0.9); /* Color of the description */
+        --desc-width: 85%;         /* Width of the description text area */       
+    }
+    #card-host .card-info-bar {
+        background-image: url('Mainnamebar.png'); 
+    }
+
+    /* Member 1 */
+    #card-m1 {
+        --profile-y-offset: -13%;
+        --pfp-size: 42%;   --pfp-x: 0px;   --pfp-y: -28px;
+        --frame-size: 70%; --frame-x: 0px; --frame-y: -25px;
+        --name-x: 55px;    --name-y: -6px;
+        --info-bar-width: 90%; --info-bar-height: 120px; --info-bar-x: 0px; --info-bar-y: -30px;
+        --level-x: 0px;    --level-y: 60px;
+        --level-icon-size: 100px; --level-icon-x: -25px; --level-icon-y: 35px;
+        --level-txt-size: 1.2rem; --level-txt-x: -50px; --level-txt-y: 45px;
+        --desc-x: -60px; --desc-y: -20px; --desc-size: 1.15rem; --desc-color: rgba(255, 255, 255, 0.9); --desc-width: 85%;
+    }
+
+    /* Member 2 */
+    #card-m2 {
+        --profile-y-offset: -13%;
+        --pfp-size: 42%;   --pfp-x: 0px;   --pfp-y: -28px;
+        --frame-size: 70%; --frame-x: 0px; --frame-y: -25px;
+        --name-x: 70px;    --name-y: -7px;
+        --info-bar-width: 90%; --info-bar-height: 120px; --info-bar-x: 0px; --info-bar-y: -30px;
+        --level-x: 0px;    --level-y: 60px;
+        --level-icon-size: 100px; --level-icon-x: 20px; --level-icon-y: 35px;
+        --level-txt-size: 1.2rem; --level-txt-x: -10px; --level-txt-y: 45px;
+        --desc-x: 0px;    --desc-y: 10px; --desc-size: 1rem; --desc-color: rgba(255, 255, 255, 0.9); --desc-width: 85%;
+    }
+
+    /* Member 3 */
+    #card-m3 {
+        --profile-y-offset: -13%;
+        --pfp-size: 42%;   --pfp-x: 0px;   --pfp-y: -28px;
+        --frame-size: 70%; --frame-x: 0px; --frame-y: -25px;
+        --name-x: 66px;    --name-y: -5px;
+        --info-bar-width: 90%; --info-bar-height: 120px; --info-bar-x: 0px; --info-bar-y: -30px;
+        --level-x: 0px;    --level-y: 60px;
+        --level-icon-size: 100px; --level-icon-x: 2px; --level-icon-y: 35px;
+        --level-txt-size: 1.2rem; --level-txt-x: -18px; --level-txt-y: 45px;
+        --desc-x: -60px; --desc-y: -10px; --desc-size: 1.15rem; --desc-color: rgba(255, 255, 255, 0.9); --desc-width: 85%;
+    }
+
+    /* Member 4 */
+    #card-m4 {
+        --profile-y-offset: -13%;
+        --pfp-size: 42%;   --pfp-x: 0px;   --pfp-y: -28px;
+        --frame-size: 70%; --frame-x: 0px; --frame-y: -25px;
+        --name-x: 45px;    --name-y: -7px;
+        --info-bar-width: 90%; --info-bar-height: 120px; --info-bar-x: 0px; --info-bar-y: -30px;
+        --level-x: 0px;    --level-y: 60px;
+        --level-icon-size: 100px; --level-icon-x: -50px; --level-icon-y: 30px;
+        --level-txt-size: 1.2rem; --level-txt-x: -70px; --level-txt-y: 45px;
+        --desc-x: -5px; --desc-y: -50px; --desc-size: 1.15rem; --desc-color: rgba(255, 255, 255, 0.9); --desc-width: 85%;
+    }
+
+    /* Member 5 */
+    #card-m5 {
+        --profile-y-offset: -13%;
+        --pfp-size: 42%;   --pfp-x: 0px;   --pfp-y: -28px;
+        --frame-size: 70%; --frame-x: 0px; --frame-y: -25px;
+        --name-x: 40px;    --name-y: -7px;
+        --info-bar-width: 90%; --info-bar-height: 120px; --info-bar-x: 0px; --info-bar-y: -30px;
+        --level-x: 0px;    --level-y: 60px;
+        --level-icon-size: 100px; --level-icon-x: -45px; --level-icon-y: 35px;
+        --level-txt-size: 1.2rem; --level-txt-x: -70px; --level-txt-y: 45px;
+        --desc-x: 0px;    --desc-y: 10px; --desc-size: 1rem; --desc-color: rgba(255, 255, 255, 0.9); --desc-width: 85%;
+    }
+
+    /* Member 6 */
+    #card-m6 {
+        --profile-y-offset: -13%;
+        --pfp-size: 42%;   --pfp-x: 0px;   --pfp-y: -28px;
+        --frame-size: 70%; --frame-x: 0px; --frame-y: -25px;
+        --name-x: 70px;    --name-y: -5px;
+        --info-bar-width: 90%; --info-bar-height: 120px; --info-bar-x: 0px; --info-bar-y: -30px;
+        --level-x: 0px;    --level-y: 60px;
+        --level-icon-size: 100px; --level-icon-x: 10px; --level-icon-y: 45px;
+        --level-txt-size: 1.2rem; --level-txt-x: -15px; --level-txt-y: 45px;
+        --desc-x: 0px;    --desc-y: 10px; --desc-size: 1rem; --desc-color: rgba(255, 255, 255, 0.9); --desc-width: 85%;
+    }
+
+    /* Member 7 */
+    #card-m7 {
+        --profile-y-offset: -13%;
+        --pfp-size: 42%;   --pfp-x: 0px;   --pfp-y: -28px;
+        --frame-size: 70%; --frame-x: 0px; --frame-y: -25px;
+        --name-x: 40px;    --name-y: -7px;
+        --info-bar-width: 90%; --info-bar-height: 120px; --info-bar-x: 0px; --info-bar-y: -30px;
+        --level-x: 0px;    --level-y: 60px;
+        --level-icon-size: 100px; --level-icon-x: -45px; --level-icon-y: 35px;
+        --level-txt-size: 1.2rem; --level-txt-x: -70px; --level-txt-y: 45px;
+        --desc-x: px;    --desc-y: -25px; --desc-size: 1rem; --desc-color: rgba(255, 255, 255, 0.9); --desc-width: 85%;
+    }
+    
+    /* New Card 1 Style */
+    #card-new-1 {
+        --profile-y-offset: -13%;
+        --pfp-size: 42%;   --pfp-x: 0px;   --pfp-y: -28px;
+        --frame-size: 70%; --frame-x: 0px; --frame-y: -25px;
+        --name-x: 65px;    --name-y: -5px;
+        --info-bar-width: 90%; --info-bar-height: 120px; --info-bar-x: 0px; --info-bar-y: -30px;
+        --level-x: 0px;    --level-y: 60px;
+        --level-icon-size: 100px; --level-icon-x: 5px; --level-icon-y: 35px;
+        --level-txt-size: 1.2rem; --level-txt-x: -20px; --level-txt-y: 45px;
+        --desc-x: -60px; --desc-y: -30px; --desc-size: 1.15rem; --desc-width: 85%;
+    }
+
+    /* New Card 2 Style */
+    #card-new-2 {
+        --profile-y-offset: -13%;
+        --pfp-size: 42%;   --pfp-x: 0px;   --pfp-y: -28px;
+        --frame-size: 70%; --frame-x: 0px; --frame-y: -25px;
+        --name-x: 70px;    --name-y: -5px;
+        --info-bar-width: 90%; --info-bar-height: 120px; --info-bar-x: 0px; --info-bar-y: -30px;
+        --level-x: 0px;    --level-y: 60px;
+        --level-icon-size: 100px; --level-icon-x: 5px; --level-icon-y: 35px;
+        --level-txt-size: 1.2rem; --level-txt-x: -20px; --level-txt-y: 45px;
+        --desc-x: -60px; --desc-y: -30px; --desc-size: 1.15rem; --desc-width: 85%;
+    }
+    
+
+    /* =========================================
+       CORE GLOBAL CODE STYLE
+       ========================================= */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+    }
+
+    html, body {
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; 
+        overflow-y: auto; 
+        -webkit-overflow-scrolling: touch;
+    }
+
+    body {
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-bottom: 8vh; 
+    }
+
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100lvh; 
+        z-index: -2;
+        pointer-events: none;
+        background-color: black;
+    }
+
+    .background video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    header {
+        height: var(--header-height);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5%;
+        margin-top: 2vh;
+        z-index: 10;
+        flex-shrink: 0;
+    }
+
+    .nav-btn {
+        background: rgba(255, 255, 255, 0.15);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        transition: transform 0.2s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .nav-btn svg {
+        width: var(--icon-size);
+        height: var(--icon-size);
+        fill: currentColor;
+    }
+
+    .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .nav-btn:active {
+        transform: scale(0.92);
+    }
+
+    h1 {
+        font-size: var(--heading-size);
+        color: white;
+        text-align: center;
+        padding: 10px 20px;
+        border: 3px solid white;
+        border-radius: 15px;
+        box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+        white-space: nowrap;
+    }
+
+    .menu-container {
+        position: relative;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        min-width: 160px;
+        overflow: hidden;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px) saturate(180%);
+        -webkit-backdrop-filter: blur(30px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        opacity: 0;
+        transform: translateY(-12px) scale(0.95);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+    }
+
+    .dropdown-menu.show {
+        opacity: 1;
+        transform: translateY(0px) scale(1);
+        pointer-events: auto;
+    }
+
+    .dropdown-menu::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(135deg, rgba(255,255,255,.25), rgba(255,255,255,.05) 50%, rgba(255,255,255,.15) 100%);
+        pointer-events: none;
+    }
+
+    .dropdown-menu a {
+        position: relative;
+        display: block;
+        color: #fff;
+        padding: 14px 20px;
+        text-decoration: none;
+        font-size: 1.01rem;
+        font-weight: 999;
+        text-align: left;
+        transition: all .25s ease;
+        border-radius: 12px;
+        margin: 9px 10px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        z-index: 1;
+    }
+
+    .dropdown-menu a:hover {
+        background: rgba(255,255,255,.12);
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateX(4px);
+    }
+
+    .dropdown-menu a i {
+        margin-right: 10px;
+        width: 18px;
+        text-align: center;
+        opacity: 0.7;
+    }
+
+    .gallery {
+        display: flex;
+        flex-direction: row;
+        gap: 20px; 
+        padding: 40px calc(50vw - (var(--card-width) / 2));
+        margin-top: 3vh; 
+        margin-bottom: 3vh;
+        overflow-x: auto; 
+        overflow-y: hidden;
+        align-items: center;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch; 
+    }
+
+    .gallery::-webkit-scrollbar { display: none; }
+    .gallery { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .card-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; 
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        transform: scale(0.85);
+        opacity: 0.5;
+        transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
+    }
+
+    .card-wrapper.center-focus {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    .card-label {
+        color: white;
+        font-size: 1.3rem;            
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;    
+        letter-spacing: 2px;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 2px 4px rgba(0,0,0,0.6);
+        transition: border-color 0.4s ease, text-shadow 0.4s ease;
+        width: max-content;
+        padding: 6px 20px;            
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    /* CARD VIDEO BACKGROUND CSS */
+    .card-video-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+        pointer-events: none;
+        border-radius: inherit;
+    }
+
+    .card {
+        width: var(--card-width);
+        aspect-ratio: 1080 / 1600; 
+        background: rgba(255, 255, 255, 0.08);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        overflow: hidden;
+    }
+
+    .card-wrapper.center-focus .card {
+        border-color: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+    }
+    
+    .card-wrapper.center-focus .card:hover {
+        border-color: white;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .profile-container {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1; 
+    }
+
+    /* INDEPENDENT PFP LAYOUT ENGINE */
+    .pfp {
+        position: absolute;
+        width: var(--pfp-size, 38%);
+        aspect-ratio: 1 / 1;           
+        height: auto;                  
+        border-radius: 50%;            
+        object-fit: cover;
+        top: calc(50% + var(--profile-y-offset, -13%));
+        left: 50%;
+        transform: translate(calc(-50% + var(--pfp-x, 0px)), calc(-50% + var(--pfp-y, 0px)));
+        z-index: 1;
+    }
+
+    /* INDEPENDENT FRAME LAYOUT ENGINE */
+    .frame {
+        position: absolute;
+        width: var(--frame-size, 100%);
+        aspect-ratio: 1 / 1;           
+        height: auto;
+        object-fit: contain;
+        top: calc(50% + var(--profile-y-offset, -13%));
+        left: 50%;
+        transform: translate(calc(-50% + var(--frame-x, 0px)), calc(-50% + var(--frame-y, 0px)));
+        pointer-events: none;
+        z-index: 2;
+    }
+    
+    /* INDEPENDENT NAME BAR CONTAINER LAYOUT */
+    .card-info-bar {
+        position: absolute;
+        bottom: var(--info-bar-bottom);
+        left: 50%;
+        width: var(--info-bar-width, 90%);
+        height: var(--info-bar-height, 120px);
+        background-image: url('Membersnamebar.png'); 
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
+        z-index: 10;
+        transform: translate(calc(-50% + var(--info-bar-x, 0px)), var(--info-bar-y, 0px));
+    }
+
+    /* INDEPENDENT NAME TEXT ENGINE */
+    .name-text {
+        color: var(--name-color, white);
+        font-weight: var(--name-weight, bold);
+        font-size: var(--name-size, 1.1rem);
+        font-style: var(--name-style, normal);       
+        letter-spacing: var(--name-spacing, 0px);    
+        text-shadow: var(--name-shadow, 0 2px 4px rgba(0,0,0,0.8));
+        transform: translate(var(--name-x, 65px), var(--name-y, -1px));
+        white-space: nowrap; 
+    }
+
+    .level-box {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transform: translate(var(--level-x, 0px), var(--level-y, 60px));
+    }
+
+    .level-icon {
+        width: var(--level-icon-size, 22px);
+        height: var(--level-icon-size, 22px);
+        object-fit: contain;
+        transform: translate(var(--level-icon-x, 0px), var(--level-icon-y, 0px));
+    }
+
+    .level-text {
+        color: var(--level-color);
+        text-shadow: 0 0 10px var(--level-color), 0 0 20px var(--level-color);
+        font-weight: 900;
+        letter-spacing: 0.5px;
+        font-size: var(--level-txt-size, 0.95rem);
+        transform: translate(var(--level-txt-x, 0px), var(--level-txt-y, 0px));
+    }
+
+    /* INDEPENDENT DESCRIPTION ENGINE */
+    .card-description {
+        position: absolute;
+        bottom: var(--desc-bottom, 15px);
+        left: 50%;
+        width: var(--desc-width, 85%);
+        text-align: center;
+        color: var(--desc-color, rgba(255, 255, 255, 0.9));
+        font-size: var(--desc-size, 0.85rem);
+        font-weight: bold;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        transform: translate(calc(-50% + var(--desc-x, 0px)), var(--desc-y, 0px));
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    .social-dock{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        gap:18px;
+        width:max-content;
+        margin:0 auto 3vh;
+        padding:16px 28px;
+        background:rgba(255,255,255,.08);
+        border:1px solid rgba(255,255,255,.15);
+        border-radius:999px;
+        backdrop-filter:blur(20px) saturate(180%);
+        -webkit-backdrop-filter:blur(20px) saturate(180%);
+        box-shadow: 0 12px 40px rgba(0,0,0,.35), inset 0 1px 1px rgba(255,255,255,.18);
+        z-index:10;
+    }
+
+    .social-dock a{
+        width:54px;
+        height:54px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        border-radius:50%;
+        text-decoration:none !important;
+        color:rgba(255,255,255,.75);
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.10);
+        transition:.35s ease;
+    }
+
+    .social-dock a i{ font-size:26px; line-height:1; display:block; text-decoration:none; }
+    .social-dock a:hover{ transform:translateY(-6px) scale(1.12); color:#fff; background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.25); }
+    .social-dock .instagram:hover{ color:#E1306C; box-shadow:0 0 18px #E1306C; }
+    .social-dock .tiktok:hover{ color:#25F4EE; box-shadow:0 0 18px #25F4EE; }
+    .social-dock .discord:hover{ color:#5865F2; box-shadow:0 0 18px #5865F2; }
+    .social-dock .telegram:hover{ color:#229ED9; box-shadow:0 0 18px #229ED9; }
+    .social-dock .snapchat:hover{ color:#FFFC00; box-shadow:0 0 18px #FFFC00; }
+    .social-dock .twitter:hover{ color:#ffffff; box-shadow:0 0 18px #ffffff; }
+    .social-dock .youtube:hover{ color:#FF0000; box-shadow:0 0 18px #FF0000; }
+    .social-dock .email:hover{ color:#00D4FF; box-shadow:0 0 18px #00D4FF; }
+    .social-dock a, .social-dock a:hover, .social-dock a:focus, .social-dock a:visited{ text-decoration:none !important; }
+
+    @media (max-width:768px){
+        .social-dock{ gap:12px; padding:12px 18px; }
+        .social-dock a{ width:35px; height:35px; }
+        .social-dock a i{ font-size:22px; }
+    }
+
+    .copyright {
+        width: 100%;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        z-index: 10;
+        margin-top: auto;
+        padding-top: 10px;
+        position: relative;
+        top: 50px; 
+    }
+
+    .social-heading {
+        color: white;
+        text-align: center;
+        font-size: 1rem;      
+        font-weight: 900;        
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        z-index: 10;
+        position: relative;
+        width: max-content;
+        margin: 5vh auto 2.5vh auto;
+        padding: 12px 35px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    /* Style for the new second line */
+    .sub-description {
+        position: absolute;
+        bottom: 2px; 
+        left: 73%;
+        width: 85%;
+        text-align: left;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.99rem; 
+        font-weight: bold;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        transform: translate(calc(-50% + var(--desc-x, 0px)), calc(var(--desc-y, 0px) + 20px));
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    /* Adjust the main description on the Host card to make room */
+    #card-host .card-description {
+        --desc-y: -40px; 
+    }
+    
+    /* Style for Member cards' second line */
+    #card-m1 .sub-description,
+    #card-m2 .sub-description,
+    #card-m3 .sub-description,
+    #card-m4 .sub-description,
+    #card-m5 .sub-description,
+    #card-m6 .sub-description,
+    #card-m7 .sub-description {
+        position: absolute;
+        bottom: -9px; 
+        left: 20px;
+        width: 85%;
+        text-align: left;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        transform: translate(var(--desc-x, 0px), var(--desc-y, 0px));
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    /* Move Member cards' FIRST description up to make room */
+    #card-m1 .card-description,
+    #card-m2 .card-description,
+    #card-m3 .card-description,
+    #card-m4 .card-description,
+    #card-m5 .card-description,
+    #card-m6 .card-description,
+    #card-m7 .card-description {
+        bottom: 35px; 
+    } 
+     
+    /* Clean Left Alignment & Variable Position Engine for specific Member cards */
+    #card-m2 .card-description,
+    #card-m5 .card-description,
+    #card-m6 .card-description,
+    #card-m7 .card-description {
+        text-align: left;
+        left: 20px;              
+        transform: translate(var(--desc-x, 0px), var(--desc-y, 0px)); 
+        width: 85%;              
+    }
+    
+</style>
+</head>
+<body>
+
+     <div class="background">
+        <video autoplay muted loop playsinline poster="Background.pg">
+            <source src="Background.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <header>
+        <button class="nav-btn" onclick="window.location.href='index.html'">
+            <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        </button>
+        
+        <h1>Meow'z Fam</h1>
+        
+        <div class="menu-container">
+            <button class="nav-btn" id="menuToggleBtn">
+                <svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="about.html" target="_blank"><i class="fas fa-user"></i> About</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Gallery -->
+    <div class="gallery" id="mainGallery">
+    
+        <!-- New Card Before First -->
+        <div class="card-wrapper">
+            <div class="card-label">Team member</div>
+            <div class="card" id="card-new-1" onclick="window.location.href='#'">
+                <video class="card-video-bg" autoplay muted loop playsinline>
+                    <source src="Smokebg.mp4" type="video/mp4">
+                </video>
+                <div class="profile-container">
+                    <img src="Smokepfp.jpg" class="pfp" alt="PFP">
+                    <img src="Membersframe.png" class="frame" alt="Frame">
+                </div>
+                <div class="card-info-bar">
+                    <div class="name-text">Smoke</div>
+                    <div class="level-box">
+                        <img src="Teamlvl.png" class="level-icon" alt="Level">
+                        <span class="level-text">Lvl.</span>
+                    </div>
+                </div>
+                <div class="card-description">Welcome to<br>the team!</div>
+            </div>
+        </div>
+        
+        <!-- Member 1 -->
+        <div class="card-wrapper">
+            <div class="card-label">Team member</div>
+            <div class="card" id="card-m1" onclick="window.location.href='#'">
+                <video class="card-video-bg" autoplay muted loop playsinline>
+                    <source src="Sembawabg.mp4" type="video/mp4">
+                </video>
+                <div class="profile-container">
+                    <img src="Sembawapfp.jpg" class="pfp" alt="PFP">
+                    <img src="Membersframe.png" class="frame" alt="Frame">
+                </div>
+                <div class="card-info-bar">
+                    <div class="name-text">Sembawa</div>
+                    <div class="level-box">
+                        <img src="Teamlvl.png" class="level-icon" alt="Level">
+                        <span class="level-text">Lvl.36</span>
+                    </div>
+                </div>
+                <div class="card-description">Best Team<br>Member</div>
+            </div>
+        </div>
+        
+        <!-- Member 2 -->
+        <div class="card-wrapper">
+            <div class="card-label">Team member</div>
+            <div class="card" id="card-m2" onclick="window.location.href='#'">
+                <video class="card-video-bg" autoplay muted loop playsinline>
+                    <source src="Aerisbg.mp4" type="video/mp4">
+                </video>
+                <div class="profile-container">
+                    <img src="Aerispfp.jpg" class="pfp" alt="PFP">
+                    <img src="Membersframe.png" class="frame" alt="Frame">
+                </div>
+                <div class="card-info-bar">
+                    <div class="name-text">Aeris</div>
+                    <div class="level-box">
+                        <img src="Teamlvl.png" class="level-icon" alt="Level">
+                        <span class="level-text">Lvl.</span>
+                    </div>
+                </div>
+                <div class="card-description">Amazing member<br>of the community<br>Always here<br>to support</div>
+            </div>
+        </div>
+
+        <!-- Member 3 -->
+        <div class="card-wrapper">
+            <div class="card-label">Team member</div>
+            <div class="card" id="card-m3" onclick="window.location.href='#'">
+                <video class="card-video-bg" autoplay muted loop playsinline>
+                    <source src="Ekctazbg.mp4" type="video/mp4">
+                </video>
+                <div class="profile-container">
+                    <img src="Ekctazpfp.jpg" class="pfp" alt="PFP">
+                    <img src="Membersframe.png" class="frame" alt="Frame">
+                </div>
+                <div class="card-info-bar">
+                    <div class="name-text">Ekctaz</div>
+                    <div class="level-box">
+                        <img src="Teamlvl.png" class="level-icon" alt="Level">
+                        <span class="level-text">Lvl.50</span>
+                    </div>
+                </div>
+                <div class="card-description">No 1 Team<br>member</div>
+            </div>
+        </div>
+        
+        <!-- Host (Zara) -->
+        <div class="card-wrapper" id="hostCardWrapper">
+            <div class="card-label">Host</div>
+            <div class="card" id="card-host" onclick="window.location.href='#'">
+                <video class="card-video-bg" autoplay muted loop playsinline>
+                    <source src="Zahrabg.mp4" type="video/mp4">
+                </video>
+                <div class="profile-container">
+                    <img src="Zahra.jpg" class="pfp" alt="Host PFP">
+                    <img src="Mainframe.png" class="frame" alt="Frame">
+                </div>
+                <div class="card-info-bar">
+                    <div class="name-text">Zahra</div>
+                    <div class="level-box">
+                        <img src="Lvl.png" class="level-icon" alt="Level">
+                        <span class="level-text">Lvl.34</span>
+                    </div>
+                </div>
+                <div class="card-description">Softly Elusive</div>
+                <div class="sub-description">Best Live<br>Streamer</div>
+            </div>
+        </div>
+
+        <!-- Member 4 -->
+        <div class="card-wrapper">
+            <div class="card-label">Team Member</div>
+            <div class="card" id="card-m4" onclick="window.location.href='#'">
+                <video class="card-video-bg" autoplay muted loop playsinline>
+                    <source src="Decorbg.mp4" type="video/mp4">
+                </video>
+                <div class="profile-container">
+                    <img src="Decor.jpg" class="pfp" alt="PFP">
+                    <img src="Membersframe.png" class="frame" alt="Frame">
+                </div>
+                <div class="card-info-bar">
+                    <div class="name-text">  Decor</div>
+                    <div class="level-box">
+                        <img src="Teamlvl.png" class="level-icon" alt="Level">
+                        <span class="level-text">Lvl.32</span>
+                    </div>
+                </div>
+                <div class="card-description">Moderator</div>
+                <div class="sub-description">OG Team<br>Member</div>
+            </div>
+        </div>
+
+        <!-- Member 5 -->
+        <div class="card-wrapper">
+            <div class="card-label">Team member</div>
+            <div class="card" id="card-m5" onclick="window.location.href='#'">
+                <video class="card-video-bg" autoplay muted loop playsinline>
+                    <source src="Rohaanbg.mp4" type="video/mp4">
+                </video>
+                <div class="profile-container">
+                    <img src="Rohaanpfp.jpg" class="pfp" alt="PFP">
+                    <img src="Membersframe.png" class="frame" alt="Frame">
+                </div>
+                <div class="card-info-bar">
+                    <div class="name-text">___Rohaan___</div>
+                    <div class="level-box">
+                        <img src="Teamlvl.png" class="level-icon" alt="Level">
+                        <span class="level-text">Lvl.32</span>
+                    </div>
+                </div>
+                <div class="card-description">Amazing member<br>of the community<br>Always here<br>to support.</div>
+            </div>
+        </div>
+
+        <!-- Member 6 -->
+        <div class="card-wrapper">
+            <div class="card-label">Team member</div>
+            <div class="card" id="card-m6" onclick="window.location.href='#'">
+                <video class="card-video-bg" autoplay muted loop playsinline>
+                    <source src="Sneedbg.mp4" type="video/mp4">
+                </video>
+                <div class="profile-container">
+                    <img src="Sneedpfp.jpg" class="pfp" alt="PFP">
+                    <img src="Membersframe.png" class="frame" alt="Frame">
+                </div>
+                <div class="card-info-bar">
+                    <div class="name-text">Sneed</div>
+                    <div class="level-box">
+                        <img src="Teamlvl.png" class="level-icon" alt="Level">
+                        <span class="level-text">Lvl.35</span>
+                    </div>
+                </div>
+                <div class="card-description">Amazing member<br>of the community<br>Always here<br>to support.</div>
+            </div>
+        </div>
+        
+        <!-- Member 7 -->
+        <div class="card-wrapper">
+            <div class="card-label">team member</div>
+            <div class="card" id="card-m7" onclick="window.location.href='#'">
+                <video class="card-video-bg" autoplay muted loop playsinline>
+                    <source src="Shawarmabg.mp4" type="video/mp4">
+                </video>
+                <div class="profile-container">
+                    <img src="Shawarmapfp.jpg" class="pfp" alt="PFP">
+                    <img src="Membersframe.png" class="frame" alt="Frame">
+                </div>
+                <div class="card-info-bar">
+                    <div class="name-text">Mr Shawarma</div>
+                    <div class="level-box">
+                        <img src="Teamlvl.png" class="level-icon" alt="Level">
+                        <span class="level-text">Lvl.</span>
+                    </div>
+                </div>
+                <div class="card-description">Amazing member<br>of the community<br>Always here<br>to support.</div>
+            </div>
+        </div>
+        
+        <!-- New Card After Last -->
+        <div class="card-wrapper">
+            <div class="card-label">Team member</div>
+            <div class="card" id="card-new-2" onclick="window.location.href='#'">
+                <video class="card-video-bg" autoplay muted loop playsinline>
+                    <source src="Zaharbg.mp4" type="video/mp4">
+                </video>
+                <div class="profile-container">
+                    <img src="Zaharpfp.jpg" class="pfp" alt="PFP">
+                    <img src="Membersframe.png" class="frame" alt="Frame">
+                </div>
+                <div class="card-info-bar">
+                    <div class="name-text">Zahar</div>
+                    <div class="level-box">
+                        <img src="Teamlvl.png" class="level-icon" alt="Level">
+                        <span class="level-text">Lvl.</span>
+                    </div>
+                </div>
+                <div class="card-description">Best Team<br>Member</div>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <h2 class="social-heading">JOIN OUR COMMUNITY</h2>
+    
+    <!-- Social Dock -->
+    <div class="social-dock">
+        <a href="https://www.tiktok.com/@z11meoww" class="tiktok" target="_blank" title="TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+        </a>
+        <a href="https://www.instagram.com/z11meow" class="instagram" target="_blank" title="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://discord.gg/YOUR_INVITE" class="discord" target="_blank" title="Discord">
+            <i class="fa-brands fa-discord"></i>
+        </a>
+        <a href="https://t.me/#" class="telegram" target="_blank" title="Telegram">
+            <i class="fa-brands fa-telegram"></i>
+        </a>
+        <a href="https://snapchat.com/add/#" class="snapchat" target="_blank" title="Snapchat">
+            <i class="fa-brands fa-snapchat"></i>
+        </a>
+        <a href="mailto:muneebxzfam@gmail.com" class="email" title="Email">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+    </div>
+
+    <p class="copyright">
+        Copyright � 2026 Zfam. All Rights Reserved.
+    </p>
+
+    <script>
+        const gallery = document.getElementById('mainGallery');
+        const wrappers = document.querySelectorAll('.card-wrapper');
+        const menuToggleBtn = document.getElementById('menuToggleBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        menuToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', () => {
+            dropdownMenu.classList.remove('show');
+        });
+
+        function determineActiveCenterCard() {
+            let targetedElement = null;
+            let minimumTrackedDistance = Infinity;
+            
+            const structuralMidpoint = gallery.getBoundingClientRect().left + (gallery.offsetWidth / 2);
+
+            wrappers.forEach((wrapper) => {
+                const geometry = wrapper.getBoundingClientRect();
+                const cardMidpoint = geometry.left + (geometry.width / 2);
+                const computedDistance = Math.abs(structuralMidpoint - cardMidpoint);
+
+                if (computedDistance < minimumTrackedDistance) {
+                    minimumTrackedDistance = computedDistance;
+                    targetedElement = wrapper;
+                }
+            });
+
+            wrappers.forEach((wrapper) => {
+                if (wrapper === targetedElement) {
+                    wrapper.classList.add('center-focus');
+                } else {
+                    wrapper.classList.remove('center-focus');
+                }
+            });
+        }
+
+        gallery.addEventListener('scroll', determineActiveCenterCard);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const hostTarget = document.getElementById('hostCardWrapper');
+            if (hostTarget) {
+                hostTarget.scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
+                setTimeout(determineActiveCenterCard, 60);
+            } else {
+                determineActiveCenterCard();
+            }
+        });
+        
+        window.addEventListener('resize', determineActiveCenterCard);
+    </script>
+</body>
+</html>
